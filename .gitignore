@@ -1,0 +1,7 @@
+node_modules
+.DS_Store
+
+
+# Do not ignore .env for this demo
+# Best practice is to ignore
+# .env
