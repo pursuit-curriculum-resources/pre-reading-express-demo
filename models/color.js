@@ -1,8 +1,8 @@
 module.exports = [
-  "MistyRose",
-  "Coral",
-  "Goldenrod",
-  "MediumAquamarine",
-  "DeepSkyBlue",
-  "Violet",
+  { name: "MistyRose" },
+  { name: "Coral" },
+  { name: "Goldenrod" },
+  { name: "MediumAquamarine" },
+  { name: "DeepSkyBlue" },
+  { name: "Violet" },
 ];
