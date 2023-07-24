@@ -1,6 +1,7 @@
 const express = require("express");
 const colors = express.Router();
 const colorsArray = require("../models/color.js");
+const { checkForColorKey } = require("../models/validations.js");
 
 // Index route
 colors.get("/", (req, res) => {
@@ -25,6 +26,37 @@ colors.get("/very/cool", (req, res) => {
     `);
 });
 
+// You do not need an API key here
+// If you wanted to require the API key
+// Move this route below the `color.use` middleware
+// DELETE
+// colors.delete("/:arrayIndex", (req, res) => {
+//   const { arrayIndex } = req.params;
+//   if (colorsArray[arrayIndex]) {
+//     const deletedBookMark = colorsArray.splice(arrayIndex, 1);
+//     res.status(200).json(deletedBookMark[0]);
+//   } else {
+//     res.status(404).json({ error: "Not Found" });
+//   }
+// });
+
+// Redirect option with delete
+colors.delete("/:arrayIndex", (req, res) => {
+  const { arrayIndex } = req.params;
+  if (colorsArray[arrayIndex]) {
+    colorsArray.splice(arrayIndex, 1);
+    res.redirect("/colors");
+  } else {
+    res.status(404).json({ error: "Not Found" });
+  }
+});
+
+colors.put("/:arrayIndex", checkForColorKey, (req, res) => {
+  const { arrayIndex } = req.params;
+  colorsArray[arrayIndex] = req.body;
+  res.status(200).json(colorsArray[arrayIndex]);
+});
+
 colors.use((req, res, next) => {
   if (req.query.apikey) {
     next();
@@ -32,14 +64,6 @@ colors.use((req, res, next) => {
     res.send("You must supply an API key");
   }
 });
-
-const checkForColorKey = (req, res, next) => {
-  if (req.body.hasOwnProperty("name")) {
-    next();
-  } else {
-    res.send("You must supply an object with a key of `name`");
-  }
-};
 
 // CREATE
 // example curl command to be able to create a new color:
