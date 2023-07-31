@@ -1,5 +1,6 @@
 // DEPENDENCIES
 const express = require("express");
+const cors = require("cors");
 const colors = require("./models/color.js");
 
 // CONFIGURATION
@@ -7,6 +8,7 @@ const app = express();
 
 // MIDDLEWARE
 app.use(express.json()); // parse incoming middleware
+app.use(cors());
 
 // Example custom middleware
 app.use((req, res, next) => {

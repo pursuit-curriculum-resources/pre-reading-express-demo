@@ -1,8 +1,8 @@
 module.exports = [
-  { name: "MistyRose" },
-  { name: "Coral" },
-  { name: "Goldenrod" },
-  { name: "MediumAquamarine" },
-  { name: "DeepSkyBlue" },
-  { name: "Violet" },
+  { name: "MistyRose", isFavorite: true },
+  { name: "Coral", isFavorite: false },
+  { name: "Goldenrod", isFavorite: false },
+  { name: "MediumAquamarine", isFavorite: true },
+  { name: "DeepSkyBlue", isFavorite: true },
+  { name: "Violet", isFavorite: true },
 ];

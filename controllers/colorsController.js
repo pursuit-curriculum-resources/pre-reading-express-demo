@@ -57,13 +57,13 @@ colors.put("/:arrayIndex", checkForColorKey, (req, res) => {
   res.status(200).json(colorsArray[arrayIndex]);
 });
 
-colors.use((req, res, next) => {
-  if (req.query.apikey) {
-    next();
-  } else {
-    res.send("You must supply an API key");
-  }
-});
+// colors.use((req, res, next) => {
+//   if (req.query.apikey) {
+//     next();
+//   } else {
+//     res.status(400).send("You must supply an API key");
+//   }
+// });
 
 // CREATE
 // example curl command to be able to create a new color:
